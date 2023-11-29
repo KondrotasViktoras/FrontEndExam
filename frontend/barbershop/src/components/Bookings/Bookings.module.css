@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+table {
+  margin-top: 20px;
+  width: 80%; /* Adjust the width as needed */
+  min-width: 600px;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #3b3a3a;
+  color: #45a049;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 20px auto;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+  /* Hide the "Update" and "Email" columns */
+  th:nth-child(2),
+  td:nth-child(2),
+  th:nth-child(3),
+  td:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 625px) {
+  /* Hide the "Update" column further */
+  th:nth-child(4),
+  td:nth-child(4) {
+    display: none;
+  }
+  td,
+  tr,
+  th {
+    width: 0.2rem;
+    padding: 0;
+  }
+}

@@ -1,0 +1,19 @@
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: white;
+  font-family: Alvaro Condensed;
+  font-size: 3rem;
+  letter-spacing: 0.2rem;
+}
+
+.makingGap {
+  display: flex;
+  gap: 1rem;
+}
