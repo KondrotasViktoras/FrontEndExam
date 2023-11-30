@@ -13,7 +13,6 @@ export default function RegistrationForm() {
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [dateError, setDateError] = useState("");
-  const [timeSlotError, setTimeSlotError] = useState("");
 
   const validateEmail = (email) => {
     const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -27,31 +26,6 @@ export default function RegistrationForm() {
     return selectedDate >= currentDate;
   };
 
-  const validateTimeSlot = async () => {
-    try {
-      // Tikrinam ar yra kita registracija pasirinktu laiku
-      const response = await axios.get(ENDPOINT, {
-        params: {
-          registrationDate,
-          registrationTime,
-        },
-      });
-
-      if (response.data.length > 0) {
-        setTimeSlotError(
-          "Sis laikas yra rezervuotas. Prasome pasirinkti kita laika"
-        );
-        return false;
-      } else {
-        setTimeSlotError("");
-        return true;
-      }
-    } catch (error) {
-      console.error("error:", error);
-      return false;
-    }
-  };
-
   const registerClient = async (e) => {
     e.preventDefault();
 
@@ -59,7 +33,6 @@ export default function RegistrationForm() {
     setNameError("");
     setEmailError("");
     setDateError("");
-    setTimeSlotError("");
 
     // Frontend validations
     if (!name.trim()) {
@@ -85,13 +58,6 @@ export default function RegistrationForm() {
 
     if (!registrationTime) {
       setDateError("Registracijos laikas reikalingas");
-      return;
-    }
-
-    // Check if the selected time slot is available
-    const isTimeSlotAvailable = await validateTimeSlot();
-    if (!isTimeSlotAvailable) {
-      setTimeSlotError("Laikas uzimtas");
       return;
     }
 
@@ -150,7 +116,7 @@ export default function RegistrationForm() {
           value={registrationTime}
           onChange={(e) => setRegistrationTime(e.target.value)}
         />
-        {timeSlotError && <p className={styles.errorText}>{timeSlotError}</p>}
+
         <br />
         <Button type="submit" buttonName={"Register"} />
       </form>
